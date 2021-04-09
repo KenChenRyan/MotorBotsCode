@@ -1,2 +1,3 @@
-# motor_bots_code
-Python Code of Motor Bots (1877M) robot
+# Motor Bots Code
+
+The Python code of the robot of Motor Bots (1877M)
