@@ -19,7 +19,7 @@ while True:
     left_lift_positon = left_lift_motor.position()
     right_lift_position = right_lift_motor.position()
     #Prints to screen
-    vexiq.lcd_write("Left lift pos: "+str(left_lift_positon)
+    vexiq.lcd_write("Left lift pos: "+str(left_lift_positon))
     vexiq.lcd_write("Righ lift pos: "+str(right_lift_position),2)
     #Controls Tank Drive
     left_drive.run(joystick.axisA())
