@@ -3,11 +3,11 @@ import sys
 import vexiq
 
 #region config
-left_drive  = vexiq.Motor(1)
-claw        = vexiq.Motor(5)
-left_lift   = vexiq.Motor(6)
-right_drive = vexiq.Motor(7, True) # Reverse Polarity
-right_lift  = vexiq.Motor(11, True) # Reverse Polarity
+left_lift_motor  = vexiq.Motor(2)
+claw_motor       = vexiq.Motor(3)
+left_drive       = vexiq.Motor(6)
+right_lift_motor = vexiq.Motor(8, True) # Reverse Polarity
+right_drive      = vexiq.Motor(12, True) # Reverse Polarity
 
 import drivetrain
 dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
