@@ -2,14 +2,14 @@
 import sys
 import vexiq
 #region config
-left_drive       = vexiq.Motor(1)
-claw_motor       = vexiq.Motor(5)
-left_lift_motor  = vexiq.Motor(6)
-right_drive      = vexiq.Motor(7, True) # Reverse Polarity
-right_lift_motor = vexiq.Motor(11, True) # Reverse Polarity
+left_lift_motor  = vexiq.Motor(2)
+claw_motor       = vexiq.Motor(3)
+left_drive       = vexiq.Motor(6)
+right_lift_motor = vexiq.Motor(8, True) # Reverse Polarity
+right_drive      = vexiq.Motor(12, True) # Reverse Polarity
 joystick         = vexiq.Joystick()
 #endregion config
-left_lift_motor.reset_position()
+left_drive.reset_position()
 right_lift_motor.reset_position()
 lift_max_height = 932 # this controls the max lift:
 lift_min_height = -5
@@ -19,7 +19,7 @@ while True:
     left_lift_positon = left_lift_motor.position()
     right_lift_position = right_lift_motor.position()
     #Prints to screen
-    vexiq.lcd_write("Left lift pos: "+str(left_lift_positon))
+    vexiq.lcd_write("Left lift pos: "+str(left_lift_positon)
     vexiq.lcd_write("Righ lift pos: "+str(right_lift_position),2)
     #Controls Tank Drive
     left_drive.run(joystick.axisA())
