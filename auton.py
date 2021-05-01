@@ -26,7 +26,10 @@ class LiftTrain:
     def __init__(self,left_motor,right_motor):
         self.left = left_motor
         self.right = right_motor
-    def raise_lift(self,height)
+    def raise_left_lift(self,height):
+        self.left.run_until(100,height)
+    def raise_right_lift(self,height):
+        self.right.run_until(100,height)
         
         
 
@@ -64,13 +67,6 @@ dt.turn_until(100,85)
 dt.drive_until(100,700)
 dt.turn_until(100,-80)
 dt.drive_until(100,400)
-
-print "Not thread"
-hood = sys.thread_id()
-print hood
-sys.run_in_thread(printHello())
-def printHello():
-    print "Hello"
 
 sys.exit()
 
