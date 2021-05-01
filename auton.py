@@ -82,7 +82,3 @@ sys.exit()
 #     def lift(power,distance):
 #         self.leftLift.run(100)
 #         self.rightLift.run(100)
-    
-jack = lambda x: x*x;
-
-jack(8)
