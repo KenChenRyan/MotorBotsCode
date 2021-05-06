@@ -26,13 +26,11 @@ class LiftTrain:
     def __init__(self,left_motor,right_motor):
         self.left = left_motor
         self.right = right_motor
-    def raise_left_lift(self,height):
+    def raise_ll(self,height):
         self.left.run_until(100,height)
-    def raise_right_lift(self,height):
+    def raise_rl(self,height):
         self.right.run_until(100,height)
         
-        
-
 # class DriveTrainPower:
 #     def __init__(self,left,right,left_p,right_p):
 #         self.leffDrive = left
@@ -48,26 +46,51 @@ class LiftTrain:
 #             self.rightDrive.run_until(self.right_power,distance)
 
 #main function
-drivePower(left_drive,right_drive,True,100)
 lift = LiftTrain(left_lift,right_lift)
+drivePower(left_drive,right_drive,True,20)
 # turn right
-dt.drive_until(100,20)
 dt.turn_until(80,-100)
-dt.drive_until(100, 488)
+#Inital Lift raising
+sys.run_in_thread(lambda: lift.raise_ll(10))
+sys.run_in_thread(lambda: lift.raise_rl(10))
+drivePower(left_drive,right_drive,True,488)
 #+1 point
 #go backwards
-dt.drive_until(-100, 380)
+dt.drive_until(-100, 40)
 #turn left
-dt.turn_until(80,90)
-dt.drive_until(100,799)
-dt.turn_until(80,-85)
-dt.drive_until(100,420)
-dt.drive_until(100,-450)
-dt.turn_until(100,85)
+dt.turn_until(80,100)
+drivePower(left_drive,right_drive,True,30)
+dt.turn_until(80,-100)
+drivePower(left_drive,right_drive,True,30)
+#Grabbing the double risers
+claw.run_until(100,5)
+sys.run_in_thread(lambda: lift.raise_ll(10))
+sys.run_in_thread(lambda: lift.raise_rl(10))
+dt.turn_until(80,-45)
+drivePower(left_drive,right_drive,True,5)
+sys.run_in_thread(lambda: lift.raise_ll(-10))
+sys.run_in_thread(lambda: lift.raise_rl(-10))
+claw.run_until(100,-5)
+#go for middle purple
+dt.drive_until(-100, 5)
+dt.turn_until(80,145)
 dt.drive_until(100,700)
-dt.turn_until(100,-80)
-dt.drive_until(100,400)
+claw.run_until(100,5)
+sys.run_in_thread(lambda: lift.raise_ll(5))
+sys.run_in_thread(lambda: lift.raise_rl(5))
+dt.turn_until(80,-50)
+claw.run_until(100,-5)
+sys.run_in_thread(lambda: lift.raise_ll(-5))
+sys.run_in_thread(lambda: lift.raise_rl(-5))
+#going for last purple risers
 
+# dt.turn_until(80,-85)
+# dt.drive_until(100,420)
+# dt.drive_until(100,-450)
+# dt.turn_until(100,85)
+# dt.drive_until(100,700)
+# dt.turn_until(100,-80)
+# dt.drive_until(100,400)
 sys.exit()
 
 #sys.run_in_thread(print("Thread"))
