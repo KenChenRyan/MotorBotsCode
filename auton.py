@@ -16,11 +16,12 @@ dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
 #functions
 def drivePower(left_drive,right_drive,fwd,distance):
     if fwd == True:
-        left_drive.run_until(100,distance)
-        right_drive.run_until(-95,distance)
+        left_drive.run(100,distance)
+        right_drive.run(95,distance)
     else:
-        left_drive.run_until(-100,distance)
-        right_drive.run_until(95,distance)
+        left_drive.run(-100,distance)
+        right_drive.run(-95,distance)
+    sys.sleep(0.5)
 
 class LiftTrain:
     def __init__(self,left_motor,right_motor):
