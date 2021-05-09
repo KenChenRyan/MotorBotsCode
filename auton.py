@@ -27,10 +27,10 @@ class LiftTrain:
     def __init__(self,left_motor,right_motor):
         self.left = left_motor
         self.right = right_motor
-    def raise_ll(self,height):
-        self.left.run_until(100,height)
-    def raise_rl(self,height):
-        self.right.run_until(100,height)
+    def raise_lift(self,height):
+        self.left.run(100,height)
+        self.right.run(100,height)
+        sys.sleep(0.5)
         
 # class DriveTrainPower:
 #     def __init__(self,left,right,left_p,right_p):
@@ -52,8 +52,9 @@ drivePower(left_drive,right_drive,True,20)
 # turn right
 dt.turn_until(80,-100)
 #Inital Lift raising
-sys.run_in_thread(lambda: lift.raise_ll(10))
-sys.run_in_thread(lambda: lift.raise_rl(10))
+lift.raise_lift(10)
+#sys.run_in_thread(lambda: lift.raise_ll(10))
+#sys.run_in_thread(lambda: lift.raise_rl(10))
 drivePower(left_drive,right_drive,True,488)
 #+1 point
 #go backwards
