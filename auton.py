@@ -9,28 +9,76 @@ left_drive  = vexiq.Motor(6)
 right_lift  = vexiq.Motor(8)
 right_drive = vexiq.Motor(12, True) # Reverse Polarity
 
-
 import drivetrain
 dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
 #endregion config
 
-#main function
-drivePower(left_drive,right_drive,True,100)
+#functions
+def drivePower(left_drive,right_drive,fwd,distance):
+    if fwd == True:
+        left_drive.run(100,distance)
+        right_drive.run(95,distance)
+    else:
+        left_drive.run(-100,distance)
+        right_drive.run(-95,distance)
+    sys.sleep(0.25)
+
+class LiftTrain:
+    def __init__(self,left_motor,right_motor):
+        self.left = left_motor
+        self.right = right_motor
+    def raise_lift(self,height):
+        self.left.run(100,height)
+        self.right.run(100,height)
+        sys.sleep(0.25)
+
 lift = LiftTrain(left_lift,right_lift)
+#main function
+drivePower(left_drive,right_drive,True,20)
 # turn right
-dt.drive_until(100,20)
 dt.turn_until(80,-100)
-dt.drive_until(100, 488)
+#Inital Lift raising
+lift.raise_lift(10)
+drivePower(left_drive,right_drive,True,488)
 #+1 point
 #go backwards
-dt.drive_until(-100, 380)
+drivePower(left_drive,right_drive,False,40)
 #turn left
-dt.turn_until(80,90)
-dt.drive_until(100,799)
-dt.turn_until(80,-85)
-dt.drive_until(100,420)
-dt.drive_until(100,-450)
-dt.turn_until(100,85)
-dt.drive_until(100,700)
-dt.turn_until(100,-80)
-dt.drive_until(100,400)
+dt.turn_until(80,100)
+drivePower(left_drive,right_drive,True,30)
+dt.turn_until(80,-100)
+drivePower(left_drive,right_drive,True,30)
+#Grabbing the double risers
+claw.run_until(100,10)
+lift.raise_lift(40)
+dt.turn_until(100,-50)
+lift.raise_lift(-10)
+claw.run_raw_until(100,-10)
+drivePower(left_drive,right_drive,False,30)
+
+#move on to middle riser
+dt.turn_until(100,150)
+drivePower(left_drive,right_drive,True,300)
+dt.turn_until(100,100)
+drivePower(left_drive,right_drive,True,40)
+dt.turn_until(100,-100)
+drivePower(left_drive,right_drive,True,40)
+dt.turn_until(100,-100)
+drivePower(left_drive,right_drive,True,80)
+
+#move on to last set of purple
+drivePower(left_drive,right_drive,False,-40)
+#turn left to face the position of last set of risers
+dt.turn_until(100,100)
+drivePower(left_drive,right_drive,True,200)
+dt.turn_until(100,-100)
+drivePower(left_drive,right_drive,True,30)
+claw.run_raw_until(100,10)
+lift.raise_lift(40)
+drivePower(left_drive,right_drive,False,30)
+dt.turn_until(100,200)
+drivePower(left_drive,right_drive,True,30)
+dt.turn_until(100,-100)
+drivePower(left_drive,right_drive,True,30)
+dt.turn_until(100,-100)
+drivePower(left_drive,right_drive,True,80)
