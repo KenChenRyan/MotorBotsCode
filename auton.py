@@ -14,14 +14,14 @@ dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
 #endregion config
 
 #functions
-def drivePower(claw,right_drive,fwd,distance):
+def drivePower(left_drive,right_drive,fwd,distance):
     if fwd == True:
-        claw.run(100,distance)
+        left_drive.run(100,distance)
         right_drive.run(95,distance)
     else:
-        claw.run(-100,distance)
+        left_drive.run(-100,distance)
         right_drive.run(-95,distance)
-    sys.sleep(0.25)
+    sys.sleep(5)
 
 class LiftTrain:
     def __init__(self,left_motor,right_motor):
