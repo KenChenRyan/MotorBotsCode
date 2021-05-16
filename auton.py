@@ -15,13 +15,19 @@ dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
 
 #functions
 def drivePower(left_drive,right_drive,fwd,distance):
+var time = 1;
+    var temp_distance = distance;
+    if distance > 450
+        while temp_distance > 450:
+            ++time;
+            temp_distance = temp_distance - 450;
     if fwd == True:
+        right_drive.run(80,distance)
         left_drive.run(100,distance)
-        right_drive.run(95,distance)
     else:
         left_drive.run(-100,distance)
-        right_drive.run(-95,distance)
-    sys.sleep(5)
+        right_drive.run(-80,distance)
+    sys.sleep(time)
 
 class LiftTrain:
     def __init__(self,left_motor,right_motor):
