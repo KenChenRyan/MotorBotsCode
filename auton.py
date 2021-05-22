@@ -15,18 +15,18 @@ dt          = drivetrain.Drivetrain(left_drive, right_drive, 200, 180)
 
 #functions
 def drivePower(left_drive,right_drive,fwd,distance):
-var time = 1;
-    var temp_distance = distance;
-    if distance > 450
-        while temp_distance > 450:
-            ++time;
-            temp_distance = temp_distance - 450;
+    time = 1;
+    temp_distance = distance;
+    if distance > 250:
+        while temp_distance > 250:
+            time = time + 1;
+            temp_distance = temp_distance - 250;
     if fwd == True:
-        right_drive.run(80,distance)
         left_drive.run(100,distance)
+        right_drive.run(85,distance)
     else:
         left_drive.run(-100,distance)
-        right_drive.run(-80,distance)
+        right_drive.run(-85,distance)
     sys.sleep(time)
 
 class LiftTrain:
@@ -40,20 +40,22 @@ class LiftTrain:
 
 lift = LiftTrain(left_lift,right_lift)
 #main function
-drivePower(left_drive,right_drive,True,120)
+#move forward
+drivePower(left_drive,right_drive,True,160)
 # turn right
-dt.turn_until(80,-56)
+dt.turn_until(80,-70)
 #Inital Lift raising
-lift.raise_lift(50)
-drivePower(left_drive,right_drive,True,488)
+lift.raise_lift(100)
+drivePower(left_drive,right_drive,True,500)
 #+1 point
 #go backwards
-drivePower(left_drive,right_drive,False,40)
+drivePower(left_drive,right_drive,False,300)
 #turn left
 dt.turn_until(80,56)
-drivePower(left_drive,right_drive,True,30)
-dt.turn_until(80,-56)
-drivePower(left_drive,right_drive,True,30)
+drivePower(left_drive,right_drive,True,560)
+dt.turn_until(80,-60)
+drivePower(left_drive,right_drive,True,250)
+
 #Grabbing the double risers
 claw.run_until(100,10)
 lift.raise_lift(40)
